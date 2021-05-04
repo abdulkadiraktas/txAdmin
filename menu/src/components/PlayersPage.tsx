@@ -4,6 +4,7 @@ import PlayerCard from "./PlayerCard";
 import { PlayerPageHeader } from "./PlayerPageHeader";
 import { useFilteredSortedPlayers } from "../state/players.state";
 import InfiniteScroll from "react-infinite-scroll-component";
+import {PlayerActionModal} from "./PlayerActionModal";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -43,6 +44,7 @@ export const PlayersPage: React.FC<{ visible: boolean }> = ({ visible }) => {
   const [loading, setLoading] = useState(false);
   const slicedPlayers = players.slice(0, playerAmountRender);
 
+  // TODO: Should be fixed a little bit
   const handleNextLoad = () => {
     setLoading(true);
     setTimeout(() => {
@@ -67,6 +69,7 @@ export const PlayersPage: React.FC<{ visible: boolean }> = ({ visible }) => {
       visibility={visible ? "visible" : "hidden"}
     >
       <PlayerPageHeader />
+      <PlayerActionModal />
       <Box className={classes.grid}>
         <Box my={2} className={classes.playerGrid} id="playerGrid">
           <InfiniteScroll
